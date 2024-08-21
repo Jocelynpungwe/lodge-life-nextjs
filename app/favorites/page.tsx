@@ -1,7 +1,15 @@
-import React from 'react'
+import EmptyList from '../../components/home/EmptyList'
+import PropertiesList from '../../components/home/PropertiesList'
+import { fetchFavorites } from '../../utils/actions'
 
-const FavoritePage = () => {
-  return <div>FavoritePage</div>
+const FavoritePage = async () => {
+  const favorites = await fetchFavorites()
+
+  if (favorites.length === 0) {
+    return <EmptyList />
+  }
+
+  return <PropertiesList properties={favorites} />
 }
 
 export default FavoritePage
